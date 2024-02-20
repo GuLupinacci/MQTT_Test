@@ -1,37 +1,33 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
-SRCDIR = src
-OBJDIR = out
-BINDIR = bin
-TESTDIR = test
+SRC_DIR = src
+OUT_DIR = out
+TEST_DIR = test
 
-SRC = $(wildcard $(SRCDIR)/*.c)
-OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
-TEST_SRC = $(wildcard $(TESTDIR)/*.c)
-TEST_OBJ = $(patsubst $(TESTDIR)/%.c,$(OBJDIR)/%.o,$(TEST_SRC))
+SRC = $(wildcard $(SRC_DIR)/*.c)
+TEST_SRC = $(wildcard $(TEST_DIR)/*.c)
 
-TARGET = $(BINDIR)/app_system
-TEST_TARGET = $(BINDIR)/tests
+PROGRAM = $(OUT_DIR)/app_system
+TEST_PROGRAM = $(OUT_DIR)/tests
 
 .PHONY: all clean test
 
-all: $(TARGET)
+all: $(PROGRAM)
 
-$(TARGET): $(OBJ) | $(BINDIR)
-    $(CC) $(CFLAGS) $^ -o $@
+$(PROGRAM): $(SRC) | $(OUT_DIR)
+	$(CC) $(CFLAGS) $^ -o $@
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-    $(CC) $(CFLAGS) -c $< -o $@
+$(TEST_PROGRAM): $(TEST_SRC) | $(OUT_DIR)
+	$(CC) $(CFLAGS) $^ -o $@
 
-$(TEST_TARGET): $(OBJ) $(TEST_OBJ) | $(BINDIR)
-    $(CC) $(CFLAGS) $^ -o $@
 
-$(OBJDIR)/%.o: $(TESTDIR)/%.c | $(OBJDIR)
-    $(CC) $(CFLAGS) -c $< -o $@
 
-test: $(TEST_TARGET)
-    ./$(TEST_TARGET)
+$(OUT_DIR):
+	mkdir -p $(OUT_DIR)
+
+test: $(TEST_PROGRAM)
+	./$(TEST_PROGRAM)
 
 clean:
-    rm -rf $(OBJDIR) $(BINDIR)
+	rm -rf $(OUT_DIR)
