@@ -11,3 +11,11 @@ test: pasta com os testes unitários .
 out: arquivos gerados durante o processo de compilação.
 
 Makefile: compila os arquivos fonte e/ou os testes do projeto
+
+# libs 
+
+paho-mqtt - git clone https://github.com/eclipse/paho.mqtt.c.git
+cmake - 
+make
+json - sudo apt-get install libjson-c-dev
+wiringpi
