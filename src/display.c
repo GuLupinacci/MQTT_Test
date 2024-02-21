@@ -1,4 +1,4 @@
-#include "lcd_hal.h"
+#include "display.h"
 #include <stdio.h>
 #include <wiringPi.h>
 
