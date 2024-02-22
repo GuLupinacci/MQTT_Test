@@ -45,7 +45,8 @@ void decode_mqtt_payload(char *payload)
         printf("Error: Payload is not valid JSON\n");
 }
 
-int main() {
+int init_mqtt() 
+{
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
     int rc;

@@ -2,6 +2,7 @@
 #include <wiringPi.h>
 #include <lcd.h>
 #include "../include/display.h"
+#include "../include/mqtt.h"
 
 #define LCD_RS  3   // Pino do Raspberry Pi conectado ao pino RS do display LCD
 #define LCD_E   0   // Pino do Raspberry Pi conectado ao pino E do display LCD
@@ -30,7 +31,7 @@ int main() {
         fprintf(stderr, "Erro ao inicializar o display LCD\n");
         return 1;
     }
-
+    init_mqtt();
     // Escreve uma mensagem no display
 
 
