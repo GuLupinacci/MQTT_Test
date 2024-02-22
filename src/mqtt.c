@@ -4,6 +4,8 @@
 #include <MQTTClient.h>
 #include <unistd.h>
 #include "../include/mqtt.h"
+#include "../include/display.h"
+#include <ctype.h>
 #include <json-c/json.h>
 
 #define MQTT_SERVER "localhost"
@@ -11,6 +13,37 @@
 #define TOPIC       "/test/trimble"
 #define QOS         0
 #define TIMEOUT     10000L
+
+void decode_mqtt_payload(char *payload)
+{
+    struct json_object *json, *obj ;
+    json = json_tokener_parse(payload);
+
+    if (json != NULL) 
+    {
+        if (json_object_is_type(json, json_type_object)) {
+            if (json_object_object_get_ex(json, "print", &obj)) 
+            {
+                if (json_object_is_type(obj, json_type_string)) 
+                {
+                    const char *print_str = json_object_get_string(obj);
+                    write_on_display(0, (char*) print_str);
+                } 
+                else 
+                    printf("Error: 'print' value is not a string\n");
+            } 
+            else 
+                printf("Error: 'print' key not found\n");
+        } 
+        else if (isdigit(*payload))
+            write_on_display(2, payload);
+        else
+            printf("Error: Payload is not valid\n");
+
+        json_object_put(json);
+    } else 
+        printf("Error: Payload is not valid JSON\n");
+}
 
 int main() {
     MQTTClient client;
@@ -51,7 +84,7 @@ int main() {
         {
             ptr = (char *) message->payload;
             *(ptr + message->payloadlen) = 0;
-            printf("%s\n", message->payload);
+            decode_mqtt_payload(message->payload);
             MQTTClient_freeMessage(&message);
             MQTTClient_free(topicName);
         }

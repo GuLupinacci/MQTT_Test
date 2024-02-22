@@ -6,12 +6,12 @@ SRC_DIR = src
 OUT_DIR = out
 TEST_DIR = test
 
-SRC = $(SRC_DIR)/mqtt.c
+SRC = $(SRC_DIR)/*.c
 TEST_SRC = $(TEST_DIR)/display/*.c
 
 PROGRAM = $(OUT_DIR)/app_system
 TEST_PROGRAM = $(OUT_DIR)/tests
-LINKER= -lpaho-mqtt3c 
+LINKER= -lpaho-mqtt3c -ljson-c
 LDFLAGS= -Lpaho.mqtt.c/build/src 
 
 .PHONY: all clean test

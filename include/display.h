@@ -11,3 +11,4 @@ int lcd_set_cursor(int row, int column);
 // Display text on the LCD display
 int lcd_display_text(const char *text);
 
+void write_on_display(int value, char *text);
