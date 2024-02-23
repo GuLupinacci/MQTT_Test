@@ -53,7 +53,7 @@ sudo apt-get install libjson-c-dev
 
 As requested, two programs are run in parallel to perform this task. The first one initializes communication with the 20x4 LCD display via GPIOs and then subscribes to the "localhost" broker on the "/test/trimble" topic. Upon receiving messages, it checks the content and writes to the display according to the presented rules. The second program publishes to the "/test/trimble" topic the runtime every 10 seconds.
 
-The Makefile compiles both programs with the *make* command and runs them together with the *make run* command. Another option to run the programs is to use the script *./build_and_run.sh*, which executes the same commands but also installs the necessary libraries if they are missing.
+The Makefile compiles both programs with the **make** command and runs them together with the **make run** command. Another option to run the programs is to use the script **./build_and_run.sh**, which executes the same commands but also installs the necessary libraries if they are missing.
 
 # Tests
 
