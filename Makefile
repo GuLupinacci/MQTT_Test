@@ -11,7 +11,7 @@ TEST_SRC = $(TEST_DIR)/display/*.c
 
 PROGRAM = $(OUT_DIR)/app_system
 TEST_PROGRAM = $(OUT_DIR)/tests
-LINKER= -lpaho-mqtt3c -ljson-c -lwiringpi
+LINKER= -lpaho-mqtt3c -ljson-c -lwiringPi -lwiringPiDev
 LDFLAGS= -Lpaho.mqtt.c/build/src 
 
 .PHONY: all clean test
