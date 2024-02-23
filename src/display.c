@@ -15,10 +15,10 @@
 
 #ifdef DISPLAY
 int lcd;
-void write_on_display(int value, char *text)
+void write_on_display(int display_line, char *display_message)
 {
-        lcdPosition(lcd, 0, value); 
-        lcdPuts(lcd, text);
+        lcdPosition(lcd, 0, display_line); 
+        lcdPuts(lcd, display_message);
 }
 #endif
 int main() {
