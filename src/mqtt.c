@@ -23,7 +23,6 @@ void decode_mqtt_payload(char *payload)
                 if (json_object_is_type(obj, json_type_string)) 
                 {
                     const char *print_str = json_object_get_string(obj);
-                    printf("MESSAGE: \"%s\"\n", print_str);
                     #ifdef DISPLAY
                     write_on_display(0, (char*) print_str);
                     #endif
@@ -39,7 +38,7 @@ void decode_mqtt_payload(char *payload)
             #ifdef DISPLAY
                 write_on_display(2, payload);
             #endif
-            printf("%s seconds\n", payload);
+            
         }
           
         else

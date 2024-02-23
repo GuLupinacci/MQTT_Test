@@ -17,6 +17,7 @@
 int lcd;
 void write_on_display(int display_line, char *display_message)
 {
+        printf("Writing \"%s\" on line %d of the display\n", payload, value);
         lcdPosition(lcd, 0, display_line); 
         lcdPuts(lcd, display_message);
 }
@@ -24,8 +25,8 @@ void write_on_display(int display_line, char *display_message)
 int main() {
 
 #ifdef DISPLAY
-    wiringPiSetup()
-    lcd = lcdInit(4, 20, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0)
+    wiringPiSetup();
+    lcd = lcdInit(4, 20, 4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, 0, 0, 0, 0);
     if (lcd < 0) 
     {
         printf(stderr, "Erro ao inicializar o display LCD\n");
