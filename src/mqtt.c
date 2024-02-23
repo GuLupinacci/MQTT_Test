@@ -23,6 +23,7 @@ void decode_mqtt_payload(char *payload)
                 if (json_object_is_type(obj, json_type_string)) 
                 {
                     const char *print_str = json_object_get_string(obj);
+                    printf("Writing \"%s\" on line 0 of the display\n", print_str);
                     #ifdef DISPLAY
                     write_on_display(0, (char*) print_str);
                     #endif
@@ -35,6 +36,7 @@ void decode_mqtt_payload(char *payload)
         } 
         else if (isdigit(*payload))
         {
+            printf("Writing %s on line 2 of the display\n", payload);
             #ifdef DISPLAY
                 write_on_display(2, payload);
             #endif

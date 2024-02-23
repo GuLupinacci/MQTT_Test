@@ -1,5 +1,7 @@
-
-
+#!/bin/bash
+if ! dpkg -s mosquitto >/dev/null 2>&1 ; then
+    sudo apt-get install mosquitto
+fi
 if [ ! -d paho.mqtt.c ] ; then
     git clone https://github.com/eclipse/paho.mqtt.c.git
     cd paho.mqtt.c

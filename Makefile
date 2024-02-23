@@ -13,10 +13,9 @@ TEST_SRC = $(TEST_DIR)/*/*.c
 PROGRAM = $(OUT_DIR)/app_system
 BROKER_PUB = $(OUT_DIR)/loop
 TEST_PROGRAM = $(OUT_DIR)/tests
-LINKER= -lpaho-mqtt3c -ljson-c #-lwiringPi -lwiringPiDev
+LINKER= -lpaho-mqtt3c -ljson-c -lwiringPi -lwiringPiDev
 
-define?= 
-#-D DISPLAY
+define?= -D DISPLAY
 
 LDFLAGS= -Lpaho.mqtt.c/build/src 
 
